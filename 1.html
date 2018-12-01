@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            background-color: #312d2d;
+        }
+        *{
+            margin:0;
+            padding:0;
+        }
+        #box{
+            margin: 100px auto;
+            position: relative;
+            /*background-color: #fff;*/
+
+            /*height: 400px;*/
+        }
+        #myvideo{
+            margin: 0 auto;
+            position: relative;
+            left:19%;
+            background-color: pink;
+        }
+        #controlbar{
+            background-color: rgba(0,0,0,.3);
+            /*background-color: pink;*/
+            position: absolute;
+            z-index: 1;
+            width: 60%;
+            height: 60px;
+            bottom: 0;
+            left: 19%;
+            overflow: hidden;
+        }
+        #size{
+            background-color: rgba(0,0,0,.3);
+            /*background-color: pink;*/
+            position: absolute;
+            z-index: 1;
+            width: 60%;
+            height: 60px;
+            top: 0;
+            left: 19%;
+            color: #fff;
+        }
+        #size>div{
+            display: inline-block;
+            line-height: 60px;
+            text-align: center;
+            margin-left:20%;
+            cursor: pointer;
+        }
+        #jia{
+            position: absolute;
+            right: 5%;
+        }
+        #jian{
+            position: absolute;
+            right: 10%;
+        }
+        #kg{
+            width: 100px;
+            height: 100px;
+            /*background-color: rgba(0,0,0,.3);*/
+            position: absolute;
+            left: 45%;
+            top:40%;
+        }
+        #controlbar #hui{
+            width: 85%;
+            height: 10px;
+            background-color: #eee;
+            position: absolute;
+            top: 25px;
+            cursor: pointer;
+        }
+        #controlbar #hong{
+            width: 85%;
+            height: 10px;
+            background-color: deepskyblue;
+            position: absolute;
+            top: 25px;
+            left: -100%;
+            cursor: pointer;
+        }
+        #controlbar #lan{
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: skyblue;
+            position: absolute;
+            left:-15px;
+            opacity: .5;
+            box-shadow: #000 0 0 5px;
+            top: 15px;
+        }
+        #controlbar #timebar{
+            width: 15%;
+            /*background-color: skyblue;*/
+            text-align: center;
+            position: absolute;
+            right: 0;
+            top:19px;
+            color: #fff;
+        }
+        #img{
+            width: 64px;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <i id="c">
+    <video src="video/mov_bbb.mp4" width="60%" preload="auto" id="myvideo"></video>
+    <div id="size">
+        <div id="s50">50%</div>
+        <div id="s75">75%</div>
+        <div id="s100">100%</div>
+        <div id="jia"   onclick="jsyl(this)">-</div>
+        <div id="jian"   onclick="zjyl(this)">+</div>
+    </div>
+    <div id="controlbar">
+        <div id="hui"></div>
+        <div id="hong"></div>
+        <div id="lan"></div>
+        <div id="timebar">00:00/00:00</div>
+    </div>
+    <div id="kg" onclick=" bfzt(this);">
+        <img src="img/播放%20(2).png" alt="" id="img">
+    </div>
+    </i>
+</div>
+<script>
+    var flag=true;
+    var s50=document.getElementById("s50");
+    var s75=document.getElementById("s75");
+    var s100=document.getElementById("s100");
+    var video=document.getElementById("myvideo");
+    var hongbar=document.getElementById("hong");
+    var lanbar=document.getElementById("lan");
+    var huibar=document.getElementById("hui");
+    var myvideo=document.getElementById("myvideo");
+    var box=document.getElementById("box");
+    var size=document.getElementById("size");
+    var img=document.getElementById("img");
+    var c=document.getElementById("c");
+    var kg=document.getElementById("kg");
+    var controlbar=document.getElementById("controlbar");
+    var btn2=document.getElementById("jia");
+    var btn3=document.getElementById("jian");
+    myvideo.style.left=controlbar.style.left=size.style.left=box.offsetWidth/2-myvideo.offsetWidth/2+"px";
+    kg.style.left=box.offsetWidth/2-img.offsetWidth/2+"px";
+    myvideo.style.top=box.offsetHeight/2-myvideo.offsetHeight/2+"px";
+    kg.style.top=box.offsetHeight/2-img.offsetHeight/2+"px";
+//    alert(screen.width);
+    s100.onclick=function () {
+        myvideo.style.width=controlbar.style.width=size.style.width=box.offsetWidth*0.9+"px";
+        box.style.margin=0;
+        myvideo.style.left=controlbar.style.left=size.style.left=box.offsetWidth/2-myvideo.offsetWidth/2+"px";
+        myvideo.style.top=box.offsetHeight/2-myvideo.offsetHeight/2+"px";
+        img.style.width=128+"px";
+        kg.style.left=box.offsetWidth/2-img.offsetWidth/2+"px";
+        kg.style.top=box.offsetHeight/2-img.offsetHeight/2+"px";
+
+//        video.orientation=portraint;
+//        alert(screen.width)
+    }
+    s50.onclick=function () {
+        myvideo.style.width=controlbar.style.width=size.style.width=box.offsetWidth/2+"px";
+        myvideo.style.left=controlbar.style.left=size.style.left=box.offsetWidth/2-myvideo.offsetWidth/2+"px";
+        myvideo.style.top=box.offsetHeight/2-myvideo.offsetHeight/2+"px";
+        box.style.margin="100px auto";
+        img.style.width=64+"px";
+        kg.style.left=box.offsetWidth/2-img.offsetWidth/2+"px";
+        kg.style.top=box.offsetHeight/2-img.offsetHeight/2+"px";
+
+    }
+    s75.onclick=function () {
+        myvideo.style.width=controlbar.style.width=size.style.width=box.offsetWidth*0.75+"px";
+        myvideo.style.left=controlbar.style.left=size.style.left=box.offsetWidth/2-myvideo.offsetWidth/2+"px";
+        box.style.margin="70px auto";
+        img.style.width=90+"px";
+        kg.style.left=box.offsetWidth/2-img.offsetWidth/2+"px";
+        kg.style.top=box.offsetHeight/2-img.offsetHeight/2+"px";
+
+    }
+    c.onmouseover=function () {
+        controlbar.style.display="block";
+        size.style.display="block";
+        kg.style.display="block";
+
+    }
+    c.onmouseout=function () {
+        controlbar.style.display="none";
+        size.style.display="none";
+        kg.style.display="none";
+
+    }
+    function jsyl(btn3){
+        video.volume-=0.1;
+        if (video.volume-0<0.00001) {
+            btn3.style.color="#fff";
+
+        }
+        else{
+            btn2.style.color="#849dff";
+        }
+    }
+    function zjyl(btn2){
+        video.volume+=0.1;
+        if (1-video.volume<0.00001) {
+            btn2.style.color="#fff";
+
+        }
+        else{
+            btn3.style.color="#849dff";
+        }
+    }
+    function bfzt(btn){
+        if (flag==true) {
+            video.play();
+            img.src="img/暂停%20(2).png";
+        } else{
+            video.pause();
+            img.src="img/播放%20(2).png";
+        }
+        flag=!flag;
+    }
+//    huibar.onclick=function(event){
+//        video.currentTime=event.offsetX/hongbar.offsetWidth*video.duration;
+//    }
+//    hongbar.onclick=function(event){
+//        video.currentTime=(event.offsetX+parseInt(hongbar.style.left))/hongbar.offsetWidth*video.duration;
+//    }
+    video.addEventListener("timeupdate",playmusic);
+    function playmusic () {
+        hongbar.style.left=(-hongbar.offsetWidth+(video.currentTime/video.duration)*hongbar.offsetWidth)+"px";
+        lanbar.style.left=(video.currentTime/video.duration)*hongbar.offsetWidth-15+"px";
+        document.getElementById("timebar").innerHTML=geshi(parseInt(video.currentTime/60))+":"+geshi(parseInt(video.currentTime%60))+"/"
+            +geshi(parseInt(video.duration/60))+":"+geshi(parseInt(video.duration%60));
+//		video.currentTime+"/"+video.duration;
+
+    }
+    huibar.onclick=function(event){
+        video.currentTime=event.offsetX/hongbar.offsetWidth*video.duration;
+    }
+    hongbar.onclick=function(event){
+        video.currentTime=(event.offsetX+parseInt(hongbar.style.left))/hongbar.offsetWidth*video.duration;
+    }
+    function geshi (n) {
+        if(n<10){
+            return "0"+n;
+        }
+        else{
+            return n;
+        }
+    }
+    lanbar.onmousedown=function (event) {
+        var event=event||window.event;
+        var X=event.clientX-box.offsetLeft+100;
+        document.onmousemove=function (event) {
+            var event=event||window.event;
+            lanbar.style.left=event.clientX-X+100+"px";
+            hongbar.style.left=(event.clientX-X-hongbar.offsetWidth+115)+"px";
+            window.getSelection ? window.getSelection().removeAllRanges() : document.selection.empty();
+            if(hongbar.left==hongbar.offsetWidth){
+                document.onmouseup();
+            }
+            video.currentTime=event.offsetX/hongbar.offsetWidth*video.duration;
+        }
+    }
+    document.onmouseup=function () {
+        document.onmousemove=null;
+//        video.currentTime=event.offsetX/hongbar.offsetWidth*video.duration;
+    }
+
+</script>
+</body>
+</html>
